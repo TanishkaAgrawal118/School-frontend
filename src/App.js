@@ -9,6 +9,8 @@ import Activities from './components/Activities';
 import Career from './components/Career';
 import Contact from './components/Contact';
 import Feedback from './components/Feedback';
+import About from './components/About';
+import LoginAs from './components/LoginAs';
 
 function App() {
   return (
@@ -17,13 +19,15 @@ function App() {
         <Routes>
           <Route path='/' element={<Top/>}></Route>
           {/* <Route path='/' element={<NavigationBar/>}></Route> */}
-          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/login-as' element={<LoginAs/>}></Route>
+          <Route path='/login/:role' element={<Login/>}></Route>
           <Route path='/enquiry' element={<Enquiry/>}></Route>
           <Route path='/facilities' element={<Facilities/>}></Route>
           <Route path='/activities' element={<Activities/>}></Route>
           <Route path='/careers' element={<Career/>}></Route>
           <Route path='/contact' element={<Contact/>}></Route>
           <Route path='/feedback' element={<Feedback/>}></Route>
+          <Route path='/about' element={<About/>}></Route>
         </Routes>
       </BrowserRouter>
     </>

@@ -231,19 +231,40 @@
     margin-bottom: 10px;
   }
   
-  .tick-list li::before {
+.tick-list li::before {
     content: '✔';
     font-family: Flaticon;
     color: green;
     position: absolute;
     left: 0;
     top: 0;
-  }
+}
 
 
   /* Contact */
-  .main-container{
+.main-container{
     display: flex;
     flex-direction: row;
 
-  }
+}
+
+  /* Login As */
+.login-as{
+  height: 200px;
+  margin: 30px;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+}
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-logo{
+  width: 100px;
+  height: auto;
+  margin-top: 10px;
+}

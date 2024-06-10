@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 const Top = () => {
   const navigate = useNavigate();
   const handleClick = () =>{
-    navigate("/login");
+    navigate("/login-as");
   }
   return (
     <>

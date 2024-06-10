@@ -29,7 +29,10 @@ const NavigationBar = () => {
               <LinkContainer to="/contact">
               <Nav.Link href="#link">CONTACT</Nav.Link>
               </LinkContainer>
-              <Nav.Link href="#link">ABOUT DIS</Nav.Link>
+              <LinkContainer to='/about'>
+              <Nav.Link>ABOUT DIS</Nav.Link>
+              </LinkContainer>
+              
               <Nav.Link href="#home">ACADEMICS</Nav.Link>
 
               
