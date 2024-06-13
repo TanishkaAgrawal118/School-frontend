@@ -3,8 +3,7 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import backgroundImage from "../images/stud6.jpeg";
 import { Paper } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
-import LoginAs from "./LoginAs";
-import { adminLogin, studentLogin } from "./ApiSerives";
+import { adminLogin, facultyLogin, studentLogin } from "./ApiSerives";
 
 const Login = () => {
   const logo = new URL("../images/school.png", import.meta.url);
@@ -12,7 +11,6 @@ const Login = () => {
   const [errormsg, setErrormsg] = useState('');
   const navigate = useNavigate();
   const { role } = useParams();
-
 
   const handleChange = (e) =>{
     setformData({...formData,[e.target.name]:e.target.value});
@@ -25,14 +23,18 @@ const Login = () => {
       let response;
       if (role === 'admin') {
         response = await adminLogin(formData);
+        navigate('/adminDashboard')
       } else if (role === 'student') {
         response = await studentLogin(formData);
+        navigate('/studentDashboard')
+      } else if (role === 'faculty'){
+        response = await facultyLogin(formData);
+        navigate('/facultyDashboard')
       }
 
       if (response && response.data) {
         const token = response.data.token;
         localStorage.setItem("token", token);
-        navigate("/careers");
       } else {
         setErrormsg('No response from server');
         console.error('No response data', response);

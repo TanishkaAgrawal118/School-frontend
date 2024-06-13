@@ -3,11 +3,11 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const LoginAs = ({ onRoleSelect }) => {
+const LoginAs = () => {
   const admin = new URL('../images/admin.jpg', import.meta.url);
   const faculty = new URL('../images/faculty.jpg', import.meta.url);
   const student = new URL('../images/student.jpg', import.meta.url);
-  console.log('LoginAs received onRoleSelect:', onRoleSelect);
+
   const navigate = useNavigate();
 
   const handleRoleSelect = (role) => {
@@ -15,7 +15,8 @@ const LoginAs = ({ onRoleSelect }) => {
   };
   return (
     <>
-      <div style={{ backgroundColor: "#f0fdf4", overflowX:"hidden",alignItems:"center",justifyContent:"center", display:"flex"}}>
+    <div style={{ backgroundColor: "#f0fdf4", height:"100vh"}}>
+    <div style={{ overflowX:"hidden",alignItems:"center",justifyContent:"center", display:"flex" }}>
         <Container >
         <Row>
           <Col lg={3} >
@@ -28,7 +29,7 @@ const LoginAs = ({ onRoleSelect }) => {
             </Paper>
           </Col>
           <Col lg={3} >
-            <Paper elevation={3} className="login-as" onClick={() => handleRoleSelect('Faculty')}>
+            <Paper elevation={3} className="login-as" onClick={() => handleRoleSelect('faculty')}>
             <div className="login-content">
               <h4>Login as Faculty</h4>
               <img src={faculty} alt="admins" className="login-logo" />
@@ -47,6 +48,8 @@ const LoginAs = ({ onRoleSelect }) => {
         </Container>
        
       </div>
+    </div>
+      
     </>
   );
 };

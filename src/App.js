@@ -10,7 +10,15 @@ import Career from './components/Career';
 import Contact from './components/Contact';
 import Feedback from './components/Feedback';
 import About from './components/About';
+import StudSidebar from './components/students/studSidebar';
 import LoginAs from './components/LoginAs';
+import FacultySidebar from './components/Faculty/FacultySidebar';
+import Attendance from './components/Faculty/Attendance';
+import Dashboard from './components/Admin/AdminDash';
+import AddStudent from './components/Admin/AddStud';
+import AddFaculty from './components/Admin/AddFaculty';
+
+
 
 function App() {
   return (
@@ -28,6 +36,12 @@ function App() {
           <Route path='/contact' element={<Contact/>}></Route>
           <Route path='/feedback' element={<Feedback/>}></Route>
           <Route path='/about' element={<About/>}></Route>
+          <Route path='/studentDashboard' element={<StudSidebar/>}></Route>
+          <Route path='/facultyDashboard' element={<FacultySidebar/>}></Route>
+          <Route path='/attendance' element={<Attendance/>}></Route>
+          <Route path='/adminDashboard' element={<Dashboard/>}></Route>
+          <Route path='/add-student' element={<AddStudent/>}></Route>
+          <Route path='/add-faculty' element={<AddFaculty/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
