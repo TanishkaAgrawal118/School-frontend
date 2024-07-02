@@ -20,26 +20,26 @@ const LeaveDetails = () => {
     fetchStudents();
   }, []);
 
-  // const handleStatusChange = async (leaveId, studentId, status) => {
-  //   try {
-  //     const response = await updateLeaveStatus(leaveId, studentId, status);
-  //     setStudents((prevStudents) => 
-  //       prevStudents.map((student) => 
-  //         student._id === studentId
-  //           ? {
-  //               ...student,
-  //               leaves: student.leaves.map((leave) =>
-  //                 leave._id === leaveId ? { ...leave, status: response.data.status } : leave
-  //               )
-  //             }
-  //           : student
-  //       )
-  //     );
-  //     alert("Status updated successfully!")
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const handleStatusChange = async (leaveId, studentId, status) => {
+    try {
+      const response = await updateLeaveStatus(leaveId, studentId, status);
+      setStudents((prevStudents) => 
+        prevStudents.map((student) => 
+          student._id === studentId
+            ? {
+                ...student,
+                leaves: student.leaves.map((leave) =>
+                  leave._id === leaveId ? { ...leave, status: response.data.status } : leave
+                )
+              }
+            : student
+        )
+      );
+      alert("Status updated successfully!")
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
