@@ -16,9 +16,9 @@ const LoginAs = () => {
   return (
     <>
     <div style={{ backgroundColor: "#f0fdf4", height:"100vh"}}>
-    <div style={{ overflowX:"hidden",alignItems:"center",justifyContent:"center", display:"flex" }}>
-        <Container >
-        <Row>
+    <div style={{ overflowX:"hidden"}}>
+        <Container>
+        <Row style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
           <Col lg={3} >
             <Paper elevation={3} className="login-as" onClick={() => handleRoleSelect('admin')} >
             <div className="login-content">

@@ -10,31 +10,37 @@ const AddFaculty = () => {
         name: "",
         email: "",
         password: "",
-        phone: ""
+        phone: "",
+        salary: "",
+        image:null,
+        subjects: [""]
     });
 
     const handleOnChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
+        if (e.target.type === 'file') {
+          setFormData({ ...formData, [e.target.name]: e.target.files[0] });
+        } else {
+          setFormData({ ...formData, [e.target.name]: e.target.value });
+        }
+      };
+    
+      const handleSubmit = async (e) => {
         e.preventDefault();
-        const { name, email, password, phone } = formData;
+        const formDataToSend = new FormData();
+        for (const key in formData) {
+            formDataToSend.append(key, formData[key]);
+        }
         try {
-                const data = { name, email, password, phone };
-                const response = await facultyRegister(data);
-                console.log('Faculty registered successfully:', response.data);
-                alert("Faculty saved successfully");
+            const response = await facultyRegister(formDataToSend);
+            console.log('Faculty registered successfully:', response.data);
+            alert("Faculty saved successfully");
         } catch (error) {
             console.error(error);
             alert("Failed to save faculty");
         }
     };
-    const token = localStorage.getItem("token");
 
-  if (!token) {
-    return null; // If no token, don't render the sidebar
-  }
+
   return (
     <>
         <AdminSidebar/>
@@ -55,7 +61,10 @@ const AddFaculty = () => {
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="email" onChange={handleOnChange} name='email' value={formData.email}></Form.Control>
                             </Form.Group>
-                           
+                            <Form.Group>
+                                <Form.Label>Monthly Salary</Form.Label>
+                                <Form.Control type="text" onChange={handleOnChange} name='salary' value={formData.salary}></Form.Control>
+                            </Form.Group>
                             
                         </Col>
                         <Col lg={6}>
@@ -66,6 +75,10 @@ const AddFaculty = () => {
                         <Form.Group>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="text" onChange={handleOnChange} name='password' value={formData.password}></Form.Control>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Upload Image</Form.Label>
+                                <Form.Control type="file" onChange={handleOnChange} name='image'></Form.Control>
                             </Form.Group>
                         </Col>
                     </Row>

@@ -9,25 +9,45 @@ const StudSidebar = ({ children }) => {
   };
   const menuItem = [
     {
-      path: "/",
+      path: "/studentDashboard",
       name: "Dashboard",
       icon: <FaTh />,
     },
     {
-      path: "/about",
-      name: "About",
+      path: "/stud-results",
+      name: "Results",
       icon: <FaUser />,
-    }
-   
+    },
+    {
+      path: "/stud-fees",
+      name: "Fees-Details",
+      icon: <FaUser />,
+    },{
+      path: "/libraryDetails",
+      name: "Library-Details",
+      icon: <FaUser/>
+    },{
+      path: "/leaveApplication",
+      name: "Leave Details",
+      icon: <FaUser/>
+    },
+    {
+      path: "/facultyInfo",
+      name: "Faculty Details",
+      icon: <FaUser/>
+    },
+
   ];
   return (
     <>
-      <div >
-        <div style={{ width: isOpen ? "200px" : "45px" }} className="sidebar">
+     <div className="top-nav">
+        <FaBars style={{ color: "white",cursor:"pointer", fontSize:"20px", margin:"8px"}} onClick={toggle} />
+        <h4 className="top-text">Student Dashboard</h4>
+      </div>
+      <div>
+        <div style={{ width: isOpen ? "200px" : "45px" }} className="sidebar" >
           <div className="top_section">
-            <div className="bars">
-              <FaBars onClick={toggle} />
-            </div>
+            
           </div>
           {menuItem.map((item, index) => (
             <NavLink to={item.path} key={index} className="link">

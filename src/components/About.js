@@ -2,6 +2,7 @@ import React from 'react'
 import backgroundImage from "../images/bg.jpg";
 import NavigationBar from './Navbar';
 import { Col, Container, Row } from 'react-bootstrap';
+import Footer from './Footer';
 
 const About = () => {
     const img = new URL("../images/about.png",import.meta.url);
@@ -63,6 +64,7 @@ const About = () => {
           </Col>
         </Row>
     </Container>
+    <Footer/>
     </>
   )
 }

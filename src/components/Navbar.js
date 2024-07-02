@@ -32,14 +32,15 @@ const NavigationBar = () => {
               <LinkContainer to='/about'>
               <Nav.Link>ABOUT DIS</Nav.Link>
               </LinkContainer>
-              
-              <Nav.Link href="#home">ACADEMICS</Nav.Link>
-
-              
-              
-              <Nav.Link href="#home">ADMISSION</Nav.Link>
+              <LinkContainer to='/academics'>
+              <Nav.Link>ACADEMICS</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/admission'>
+              <Nav.Link>ADMISSION</Nav.Link>
+              </LinkContainer>               
+{/*               
               <Nav.Link href="#link">GALLERY</Nav.Link>
-              <Nav.Link href="#link">FAQS</Nav.Link>
+              <Nav.Link href="#link">FAQS</Nav.Link>  */}
               
             </Nav>
           </Navbar.Collapse>

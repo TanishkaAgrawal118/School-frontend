@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
 import AdminSidebar from './AdminSidebar';
-import { Button, Col, Container, Row } from 'react-bootstrap';
-import { Form } from 'react-bootstrap';
+import { Button, Col, Container, Row, Form } from 'react-bootstrap';
 import { Paper } from '@mui/material';
 import { studentRegister } from '../ApiSerives';
 
@@ -13,81 +12,94 @@ const AddStudent = () => {
         password: "",
         section: "",
         rollNum: "",
-        phone: ""
+        phone: "",
+        image: null,
+        parentsContact: ""
     });
 
     const handleOnChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, type, files, value } = e.target;
+        if (type === 'file') {
+            setFormData({ ...formData, [name]: files[0] });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { name, email, className, password, section, rollNum, phone } = formData;
+        const formDataToSend = new FormData();
+        for (const key in formData) {
+            formDataToSend.append(key, formData[key]);
+        }
+
         try {
-                const data = { name, email, className, password, section, rollNum, phone };
-                const response = await studentRegister(data);
-                console.log('Student registered successfully:', response.data);
-                alert("Student saved successfully");
+            const response = await studentRegister(formDataToSend);
+            console.log('Student registered successfully:', response.data);
+            alert("Student saved successfully");
         } catch (error) {
             console.error(error);
             alert("Failed to save student");
         }
     };
-    const token = localStorage.getItem("token");
 
-    if (!token) {
-      return null; // If no token, don't render the sidebar
-    }
-  return (
-    <>
-        <AdminSidebar/>
-        <Container className='content-container'>
-        <div className='add-head'>
-                <h5>Add Student</h5>
-            </div>
-            <Paper elevation={2} className="content-paper">
-                <form onSubmit={handleSubmit}>
-                    <Row>
-                        <Col lg={6}>
-                            <Form.Group>
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" onChange={handleOnChange} name='name' value={formData.name}></Form.Control>
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" onChange={handleOnChange} name='email' value={formData.email}></Form.Control>
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Class</Form.Label>
-                                <Form.Control type="text" onChange={handleOnChange} name='className' value={formData.className}></Form.Control>
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="text" onChange={handleOnChange} name='password' value={formData.password}></Form.Control>
-                            </Form.Group>
-                        </Col>
-                        <Col lg={6}>
-                        <Form.Group>
-                                <Form.Label>Section</Form.Label>
-                                <Form.Control type="text" onChange={handleOnChange} name='section' value={formData.section}></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                                <Form.Label>Roll Number</Form.Label>
-                                <Form.Control type="text" onChange={handleOnChange} name='rollNum' value={formData.rollNum}></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                                <Form.Label>Phone</Form.Label>
-                                <Form.Control type="text" onChange={handleOnChange} name='phone' value={formData.phone}></Form.Control>
-                        </Form.Group>
-                        </Col>
-                    </Row>
-                    <Button variant="primary" style={{ margin: "10px", padding: "6px" }} type='submit'>Save Student</Button>
-                </form>
-            </Paper>
-        </Container>
-        
-    </>
-  )
-}
+    return (
+        <>
+            <AdminSidebar />
+            <Container className='content-container'>
+                <div className='add-head'>
+                    <h5>Add Student</h5>
+                </div>
+                <Paper elevation={2} className="content-paper">
+                    <form onSubmit={handleSubmit}>
+                        <Row>
+                            <Col lg={6}>
+                                <Form.Group controlId='name'>
+                                    <Form.Label>Name</Form.Label>
+                                    <Form.Control type="text" onChange={handleOnChange} name='name' value={formData.name}></Form.Control>
+                                </Form.Group>
+                                <Form.Group controlId='email'>
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control type="email" onChange={handleOnChange} name='email' value={formData.email}></Form.Control>
+                                </Form.Group>
+                                <Form.Group controlId='className'>
+                                    <Form.Label>Class</Form.Label>
+                                    <Form.Control type="text" onChange={handleOnChange} name='className' value={formData.className}></Form.Control>
+                                </Form.Group>
+                                <Form.Group controlId='password'>
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="text" onChange={handleOnChange} name='password' value={formData.password}></Form.Control>
+                                </Form.Group>
+                                <Form.Group controlId='image'>
+                                    <Form.Label>Upload Image</Form.Label>
+                                    <Form.Control type="file" onChange={handleOnChange} name='image'></Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col lg={6}>
+                                <Form.Group controlId='section'>
+                                    <Form.Label>Section</Form.Label>
+                                    <Form.Control type="text" onChange={handleOnChange} name='section' value={formData.section}></Form.Control>
+                                </Form.Group>
+                                <Form.Group controlId='rollNum'>
+                                    <Form.Label>Roll Number</Form.Label>
+                                    <Form.Control type="text" onChange={handleOnChange} name='rollNum' value={formData.rollNum}></Form.Control>
+                                </Form.Group>
+                                <Form.Group controlId='phone'>
+                                    <Form.Label>Phone</Form.Label>
+                                    <Form.Control type="text" onChange={handleOnChange} name='phone' value={formData.phone}></Form.Control>
+                                </Form.Group>
+                                <Form.Group controlId='parentsContact'>
+                                    <Form.Label>Parents Contact</Form.Label>
+                                    <Form.Control type="text" onChange={handleOnChange} name='parentsContact' value={formData.parentsContact}></Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Button variant="primary" style={{ margin: "10px", padding: "6px" }} type='submit'>Save Student</Button>
+                    </form>
+                </Paper>
+            </Container>
+        </>
+    );
+};
 
 export default AddStudent;

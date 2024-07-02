@@ -278,6 +278,7 @@
   height: 90vh;
   transition: all 0.2s;
   position: fixed;
+  margin-top: 60px;
 }
 .link{
   display: flex;
@@ -303,12 +304,13 @@
   height: 60px; 
   background-color: #083344;
   z-index: 10;
+  position:fixed;
+  width: 100%;
 }
 .top-text{
   color: white;
   margin: 0; 
 }
-
 
 .content-container {
   flex-grow: 1;
@@ -318,15 +320,157 @@
   padding: 20px;
   margin-left: 90px;
   margin-bottom: 20px;
+  margin-top: 50px;
 }
+
+@media (max-width: 786px){
+  .content-paper{
+    margin-left: 20px;
+  }
+}
+
 .add-head{
   background-color: #000458;
   color: #ffffff;
-  margin: 10px;
+  margin: 50px;
   margin-left: 95px;
   padding: 5px;
   display: flex;
   justify-content: center;
   align-content: center;
   width: 300px;
+}
+
+/* Student Dashborad */
+.profile{
+  padding: 10px;
+  width: 300px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.profile img{
+  width: 8vw;
+  height: 14vh;
+}
+.profile p{
+  margin: 3px 0;
+}
+.fees{
+  background-color: rgb(86, 185, 86)!important;
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 150px;
+  width:320px;
+  color: white!important;
+  cursor: pointer;
+}
+.transport{
+  background-color: rgb(206, 226, 255)!important;
+  padding: 20px;
+  margin-bottom: 20px;
+  height: 150px;
+  width: 300px;
+  cursor: pointer;
+  color: black;
+}
+.transport a{
+  color: black;
+}
+
+/* Admin Dashboard */
+.adminbox1{
+  background-color: #ddd9d9!important;
+  padding: 10px;
+  height: 100px;
+  width: 200px;
+  color: black;
+  text-align: center;
+}
+.adminbox2{
+  background-color: #fcfbd9!important;
+  padding: 10px;
+  height: 100px;
+  width: 200px;
+  color: black;
+  text-align: center;
+}
+
+.notice{
+  border:1px solid rgb(199, 199, 199);
+  background-color: white;
+  padding: 10px;
+  margin: 10px 10px 10px 0px;
+  border-radius: 10px;
+}
+.notice h6{
+  cursor: pointer;
+}
+
+.resultBox {
+  width: 100%;
+  margin: 10px 0;
+  border-collapse: collapse;
+}
+
+.resultBox th, .resultBox td {
+  border: 1px solid #1a3057e0;
+  padding: 0.5rem;
+}
+
+.resultBox thead th {
+  background: rgba(35, 102, 131, 0.773);
+}
+
+.resultBox tbody tr:nth-child(odd) {
+  background-color: #fffeff; 
+}
+
+.resultBox tbody tr:nth-child(even) {
+  background-color: #ffffff; 
+}
+
+.libraryTable{
+  width: 100%;
+  margin-top: 20px;
+}
+.libraryTable th, .libraryTable td{
+  border: 1px solid black;
+  padding: 0.2rem;
+}
+.feesTable{
+  width: 100%;
+}
+.feesTable th, .feesTable td{
+  border: 1px solid black;
+  padding: 0.2rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.pay{
+  margin-top: 10px;
+}
+/* Faculty Library */
+
+.facultyLibrary{
+  width: 100%;
+  margin-top: 20px;
+}
+.facultyLibrary th, .facultyLibrary td{
+  padding: 0.2rem;
+}
+
+
+.label{
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+.lib-input{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }

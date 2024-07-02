@@ -12,24 +12,20 @@ const Attendance = () => {
   const [date, setDate] = useState("");
   const [selectedStudents, setSelectedStudents] = useState({});
 
-
   const fetchStudents = async (className, section) => {
     try {
       const response = await getStudents(className, section);
-      setStudentsData(response.data.filter(student => student.className  && student.section === section ));
+      setStudentsData(response.data.filter(student => student.className === className && student.section === section));
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchStudents(className, section);
+    if (className && section) {
+      fetchStudents(className, section);
+    }
   }, [className, section]);
-
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   fetchStudents(className, section);
-  // };
 
   const handleCheckboxChange = (studentId) => {
     setSelectedStudents(prevState => ({
@@ -39,6 +35,14 @@ const Attendance = () => {
   };
 
   const handleSaveAttendance = async () => {
+    const isValidDate = (dateString) => {
+      const dateObj = new Date(dateString);
+      return !isNaN(dateObj.getTime());
+    };
+    if (!isValidDate(date)) {
+      alert("Please select a valid date");
+      return;
+    }
     const attendanceData = studentsData.map(student => ({
       studentId: student._id,
       date,
@@ -47,6 +51,8 @@ const Attendance = () => {
       className,
       section,
     }));
+
+    console.log(attendanceData);
 
     try {
       await saveAttendance(attendanceData);
@@ -130,13 +136,6 @@ const Attendance = () => {
                   </Form.Group>
                 </Col>
               </Row>
-              {/* <Button
-                variant="primary"
-                style={{ margin: "10px", padding: "6px" }}
-                type="submit"
-              >
-                Search
-              </Button> */}
             </Form>
           </Paper>
           <Paper elevation={2} className="content-paper">
@@ -156,7 +155,7 @@ const Attendance = () => {
                     <td style={{ display: "flex", justifyContent: "center" }}>
                       <Form.Check
                         type="checkbox"
-                        checked={selectedStudents[student._id]}
+                        checked={!!selectedStudents[student._id]}
                         onChange={() => handleCheckboxChange(student._id)}
                       ></Form.Check>
                     </td>
@@ -179,34 +178,3 @@ const Attendance = () => {
 };
 
 export default Attendance;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

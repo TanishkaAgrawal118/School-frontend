@@ -23,6 +23,21 @@ const FacultySidebar = ({ children }) => {
         path:"/attendance",
         name: "Attendance",
         icon: <FaBookOpenReader/>
+    },
+    {
+      path:"/facultyLibrary",
+      name: "Library Details",
+      icon: <FaBookOpenReader/>
+    },
+    {
+      path:"/facultyLeave",
+      name: "Leave Details",
+      icon: <FaBookOpenReader/>
+    }, 
+    {
+      path:"/resultList",
+      name: "Result List",
+      icon: <FaBookOpenReader/>
     }
   ];
   return (

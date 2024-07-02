@@ -24,6 +24,22 @@ const AdminSidebar = ({ children }) => {
         name: "Add Faculty",
         icon: <FaUser />,
       },
+      {
+        path: "/createNotice",
+        name: "Create Notice",
+        icon: <FaUser />,
+      },
+      {
+        path: "/updateData",
+        name: "List Student",
+        icon: <FaUser />,
+      },
+      {
+        path: "/facultyFee",
+        name: "List Faculty",
+        icon: <FaUser />,
+      },
+
     ];
     return (
       <>
